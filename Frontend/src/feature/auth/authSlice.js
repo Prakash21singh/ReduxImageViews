@@ -24,6 +24,7 @@ export const logoutUser = createAsyncThunk("user/logout", async () => {
     {},
     { withCredentials: true }
   );
+  localStorage.clear();
   return response.data;
 });
 
