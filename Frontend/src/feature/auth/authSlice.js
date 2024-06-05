@@ -18,15 +18,26 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-export const logoutUser = createAsyncThunk("user/logout", async () => {
-  const response = await axios.post(
-    `${config.VITE_BACKEND}/logout`,
-    {},
-    { withCredentials: true }
-  );
-  localStorage.clear();
-  return response.data;
-});
+export const logoutUser = createAsyncThunk(
+  "user/logout",
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(
+        `${config.VITE_BACKEND}/logout`,
+        {},
+        { withCredentials: true }
+      );
+
+      return data;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  }
+);
 
 const initialState = {
   User: {
@@ -91,8 +102,9 @@ const userSlice = createSlice({
         state.loading = true;
       })
       .addCase(logoutUser.fulfilled, (state) => {
-        state.isAuthenticated = false;
-        state.User = {};
+        console.log("Logout ho gya");
+        state.User.isAuthenticated = false;
+        state.User.user = null;
         state.loading = false;
         // Clear error state (optional)
         state.error = null;

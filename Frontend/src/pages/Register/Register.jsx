@@ -5,6 +5,7 @@ import Button from "../../components/Button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { config } from "../../config/env.config";
+import Loader from "../../components/Loader/Loader";
 const Register = () => {
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
@@ -43,7 +44,7 @@ const Register = () => {
   return (
     <div className="registerContainer">
       <h1>Register Form</h1>
-
+      {loading && <Loader />}
       <form onSubmit={handleRegister}>
         <InputField
           placeholder={"Enter Your email"}

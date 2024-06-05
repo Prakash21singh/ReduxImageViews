@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.scss";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
@@ -14,9 +14,11 @@ import Views from "../../assets/Views";
 
 const Images = () => {
   const dispatch = useDispatch();
-  let { image, loading } = useSelector((state) => state.User.User);
+  let { image } = useSelector((state) => state.User.User);
+  const [loading, setloading] = useState(false);
 
   useEffect(() => {
+    setloading(true);
     dispatch(fetchImageFailure());
     axios
       .get(`${config.VITE_BACKEND}/uploads`, { withCredentials: true })
@@ -29,6 +31,9 @@ const Images = () => {
         dispatch(
           fetchImageFailure(error.response.data.message || error.message)
         );
+      })
+      .finally(() => {
+        setloading(false);
       });
   }, []);
 

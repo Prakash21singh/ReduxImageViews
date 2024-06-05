@@ -11,32 +11,12 @@ import { logoutUser } from "./feature/auth/authSlice";
 function App() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  useEffect(() => {
-    axios
-      .post(
-        `${config.VITE_BACKEND}/checkSession`,
-        {},
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        console.log(res.data, "UPLOAD");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   function handleLogout() {
-    dispatch(logoutUser())
-      .then((res) => {
-        console.log("Logged out successfully");
-        navigate("/login");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    dispatch(logoutUser()).then((res) => {
+      console.log("Logged out successfully");
+      navigate("/login");
+    });
   }
 
   return (

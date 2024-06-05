@@ -3,11 +3,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { config } from "../../config/env.config";
 import "./style.scss";
+import Loader from "../../components/Loader/Loader";
 const Image = () => {
   let { imageId } = useParams();
   let [image, setImage] = useState();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     axios
       .post(
         `${config.VITE_BACKEND}/upload/${imageId}`,
@@ -20,12 +23,15 @@ const Image = () => {
       })
       .catch((error) => {
         console.log(error);
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
-  console.log(image);
   return (
     <div className="imageContainer">
+      {loading && <Loader />}
       <button
         onClick={() => {
           navigate(-1);

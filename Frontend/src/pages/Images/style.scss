@@ -7,18 +7,21 @@
   align-items: start;
   overflow: auto;
   padding: 20px;
+  position: relative;
   .imagesBox {
     width: 26%;
-    min-height: 300px;
+    min-height: 350px;
     border: 2px dashed #434040;
     padding: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+    margin: 10px;
     img {
       width: 100%;
-      object-fit: cover;
+      max-height: 180px;
+      object-fit: contain;
       height: auto;
     }
     .about {

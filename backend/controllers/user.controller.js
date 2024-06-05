@@ -44,7 +44,6 @@ exports.Login = async function (req, res) {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        path: "/",
       })
       .send({
         message: "Logged in successfully",
@@ -63,7 +62,7 @@ exports.Logout = function (req, res) {
         .status(500)
         .json({ message: "Something went wrong while logging out" });
     }
-    res.clearCookie("connect.sid");
+    res.clearCookie("user_sid");
     return res.status(200).json({ message: "Logged out successfully" });
   });
 };
