@@ -30,7 +30,8 @@ app.use(
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:
+      "https://redux-image-view-git-main-prakashs-projects-29909feb.vercel.app",
     credentials: true,
   })
 );
