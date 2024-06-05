@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <App />,
         children: [
-          { index: true, element: <h1>Explore the context</h1> },
+          { index: true, element: <h1>Checkout the Routes</h1> },
           {
             path: "/images",
             element: <Images />,
