@@ -41,10 +41,9 @@ exports.Login = async function (req, res) {
       .status(200)
       .cookie("user_sid", user._id, {
         maxAge: 3600000,
-        httpOnly: false,
-        secure: true,
-        sameSite: "none",
-        path: "/",
+        httpOnly: true,
+        secure: false,
+        sameSite: "lax",
       })
       .send({
         message: "Logged in successfully",

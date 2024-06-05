@@ -21,9 +21,9 @@ app.use(
     store: MongoStore.create({ mongoUrl: MONGODB_URI }),
     cookie: {
       maxAge: 3600000,
-      secure: true,
+      secure: false,
       sameSite: "none",
-      httpOnly: false,
+      httpOnly: true,
       path: "/",
     },
   })
