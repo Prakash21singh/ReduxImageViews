@@ -43,7 +43,7 @@ exports.Login = async function (req, res) {
         maxAge: 3600000,
         httpOnly: true,
         secure: true,
-        sameSite: "Strict",
+        sameSite: "lax",
       })
       .send({
         message: "Logged in successfully",
