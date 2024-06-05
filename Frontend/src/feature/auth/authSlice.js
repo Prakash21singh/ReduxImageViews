@@ -6,7 +6,10 @@ export const loginUser = createAsyncThunk(
   async (userCredential) => {
     const request = await axios.post(
       `${config.VITE_BACKEND}/login`,
-      userCredential
+      userCredential,
+      {
+        withCredentials: true,
+      }
     );
 
     const response = request.data.user;
