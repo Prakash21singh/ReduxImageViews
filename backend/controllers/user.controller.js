@@ -41,7 +41,7 @@ exports.Login = async function (req, res) {
       .status(200)
       .cookie("user_sid", user._id, {
         maxAge: 3600000,
-        httpOnly: true,
+        httpOnly: false,
         secure: true,
         sameSite: "none",
         path: "/",
